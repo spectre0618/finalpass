@@ -6,6 +6,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#060C18">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-title" content="FinalPass">
 <title>FinalPass</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
@@ -33,11 +36,11 @@
   --cat-ifr:    #FFB020;
   --cat-lifr:   #FF4050;
 }
- 
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
 html { height: 100%; }
- 
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--bg);
@@ -48,7 +51,7 @@ body {
   position: relative;
   overflow-x: hidden;
 }
- 
+
 /* ── Background texture ─────────────────────────────────── */
 body::before {
   content: '';
@@ -60,7 +63,7 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
- 
+
 /* ── Top bar ────────────────────────────────────────────── */
 .top-bar {
   position: sticky;
@@ -75,9 +78,9 @@ body::before {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
- 
+
 .top-bar-left { display: flex; flex-direction: column; }
- 
+
 .tb-icao {
   font-family: 'Rajdhani', sans-serif;
   font-size: 26px;
@@ -86,7 +89,7 @@ body::before {
   color: var(--text-1);
   line-height: 1;
 }
- 
+
 .tb-name {
   font-size: 10px;
   font-weight: 500;
@@ -95,7 +98,7 @@ body::before {
   color: var(--text-2);
   margin-top: 2px;
 }
- 
+
 .search-btn {
   display: flex;
   align-items: center;
@@ -113,7 +116,7 @@ body::before {
   -webkit-tap-highlight-color: transparent;
 }
 .search-btn:active { border-color: var(--accent); color: var(--accent-hi); }
- 
+
 /* ── Search overlay ─────────────────────────────────────── */
 .search-overlay {
   position: fixed;
@@ -129,7 +132,7 @@ body::before {
 }
 .search-overlay.open { display: flex; animation: slideIn 0.18s ease; }
 @keyframes slideIn { from { opacity:0; transform: translateX(-50%) translateY(-8px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
- 
+
 .search-head {
   display: flex;
   align-items: center;
@@ -137,7 +140,7 @@ body::before {
   padding: 14px 16px;
   border-bottom: 1px solid var(--border);
 }
- 
+
 .search-input {
   flex: 1;
   background: var(--surf-2);
@@ -154,7 +157,7 @@ body::before {
 }
 .search-input:focus { border-color: var(--accent); }
 .search-input::placeholder { color: var(--text-3); font-weight: 400; font-size: 16px; letter-spacing: 0.04em; }
- 
+
 .cancel-btn {
   background: none;
   border: none;
@@ -165,7 +168,7 @@ body::before {
   padding: 8px 4px;
   -webkit-tap-highlight-color: transparent;
 }
- 
+
 .search-section-label {
   padding: 10px 16px 4px;
   font-size: 10px;
@@ -174,9 +177,9 @@ body::before {
   text-transform: uppercase;
   color: var(--text-3);
 }
- 
+
 .search-results { flex: 1; overflow-y: auto; }
- 
+
 .search-result {
   display: flex;
   align-items: center;
@@ -188,7 +191,7 @@ body::before {
   transition: background 0.1s;
 }
 .search-result:active { background: var(--surf-2); }
- 
+
 .sr-icao {
   font-family: 'Rajdhani', sans-serif;
   font-size: 20px;
@@ -198,7 +201,7 @@ body::before {
 }
 .sr-name { font-size: 13px; color: var(--text-1); margin-top: 1px; }
 .sr-city { font-size: 11px; color: var(--text-2); }
- 
+
 /* ── Main content ───────────────────────────────────────── */
 .content {
   position: relative;
@@ -208,7 +211,7 @@ body::before {
   flex-direction: column;
   gap: 10px;
 }
- 
+
 /* ── Loading/error ──────────────────────────────────────── */
 .loading-state {
   display: flex;
@@ -227,7 +230,7 @@ body::before {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading-text { font-size: 13px; color: var(--text-2); letter-spacing: 0.06em; }
- 
+
 /* ── Cards ──────────────────────────────────────────────── */
 .card {
   background: var(--surf-1);
@@ -244,7 +247,7 @@ body::before {
   pointer-events: none;
   border-radius: inherit;
 }
- 
+
 .card-head {
   display: flex;
   align-items: center;
@@ -266,7 +269,7 @@ body::before {
   letter-spacing: 0.08em;
   color: var(--text-2);
 }
- 
+
 /* ── Runway hero card ───────────────────────────────────── */
 .rwy-hero {
   background: var(--surf-1);
@@ -275,7 +278,7 @@ body::before {
   overflow: hidden;
   position: relative;
 }
- 
+
 .rwy-hero::before {
   content: '';
   position: absolute;
@@ -284,14 +287,14 @@ body::before {
   background: linear-gradient(90deg, transparent, var(--rwy), transparent);
   opacity: 0.5;
 }
- 
+
 .rwy-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 18px 20px 16px;
 }
- 
+
 .rwy-number-wrap { display: flex; flex-direction: column; align-items: flex-start; }
 .rwy-number {
   font-family: 'Rajdhani', sans-serif;
@@ -310,7 +313,7 @@ body::before {
   color: var(--text-2);
   margin-top: 6px;
 }
- 
+
 .rwy-stats {
   display: flex;
   flex-direction: column;
@@ -333,7 +336,7 @@ body::before {
   line-height: 1.1;
 }
 .rwy-stat-unit { font-size: 12px; color: var(--text-2); font-family: 'DM Sans', sans-serif; }
- 
+
 /* ── Runway picker pills ───────────────────────────────── */
 .rwy-picker {
   display: flex;
@@ -357,7 +360,7 @@ body::before {
   border-color: var(--rwy);
   color: var(--rwy);
 }
- 
+
 /* ── Crosswind bar ─────────────────────────────────────── */
 .xw-section {
   padding: 10px 14px 14px;
@@ -398,7 +401,7 @@ body::before {
   min-width: 36px;
   text-align: right;
 }
- 
+
 /* ── Wind card ─────────────────────────────────────────── */
 .wind-section {
   display: flex;
@@ -407,7 +410,7 @@ body::before {
   padding: 14px;
 }
 .wind-rose-wrap { flex-shrink: 0; }
- 
+
 .wind-data { display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .wind-speed-row { display: flex; align-items: baseline; gap: 6px; }
 .wind-spd {
@@ -434,7 +437,7 @@ body::before {
   font-size: 12px;
   color: var(--text-3);
 }
- 
+
 /* ── Conditions grid ───────────────────────────────────── */
 .cond-grid {
   display: grid;
@@ -464,7 +467,7 @@ body::before {
 }
 .cond-val.sm { font-size: 16px; }
 .cond-unit { font-size: 11px; color: var(--text-2); font-family: 'DM Sans', sans-serif; }
- 
+
 /* ── METAR card ────────────────────────────────────────── */
 .metar-raw {
   font-family: 'Share Tech Mono', monospace;
@@ -478,7 +481,7 @@ body::before {
   letter-spacing: 0.02em;
 }
 .metar-raw .hi { color: var(--accent-hi); }
- 
+
 /* ── Spotter locations ─────────────────────────────────── */
 .spot-item {
   padding: 12px 14px;
@@ -514,7 +517,7 @@ body::before {
 .spot-desc { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 5px; }
 .spot-tip { font-size: 11px; color: var(--accent); letter-spacing: 0.01em; }
 .spot-tip::before { content: '→ '; }
- 
+
 /* ── Footer ────────────────────────────────────────────── */
 .app-footer {
   padding: 16px 0 36px;
@@ -526,7 +529,7 @@ body::before {
   color: var(--text-3);
 }
 .app-footer span { color: var(--border-hi); }
- 
+
 /* ── Refresh row ───────────────────────────────────────── */
 .refresh-row {
   display: flex;
@@ -548,7 +551,7 @@ body::before {
   transition: border-color 0.15s, color 0.15s;
 }
 .refresh-btn:active { border-color: var(--accent); color: var(--accent-hi); }
- 
+
 /* ── No data banner ────────────────────────────────────── */
 .no-rwy-banner {
   padding: 14px;
@@ -556,7 +559,7 @@ body::before {
   color: var(--text-2);
   line-height: 1.6;
 }
- 
+
 /* ── Flight category badge ─────────────────────────────── */
 .cat-badge {
   font-family: 'Rajdhani', sans-serif;
@@ -569,7 +572,7 @@ body::before {
 </style>
 </head>
 <body>
- 
+
 <!-- Search Overlay -->
 <div class="search-overlay" id="searchOverlay">
   <div class="search-head">
@@ -582,7 +585,7 @@ body::before {
   <div id="searchSectionLabel" class="search-section-label">All airports</div>
   <div class="search-results" id="searchResults"></div>
 </div>
- 
+
 <!-- Top Bar -->
 <div class="top-bar">
   <div class="top-bar-left">
@@ -596,7 +599,7 @@ body::before {
     Search
   </button>
 </div>
- 
+
 <!-- Main Content -->
 <div class="content" id="mainContent">
   <div class="loading-state">
@@ -604,13 +607,13 @@ body::before {
     <div class="loading-text">Contacting weather services…</div>
   </div>
 </div>
- 
+
 <script>
 // ═══════════════════════════════════════════════════════════
 // AIRPORT DATABASE
 // ═══════════════════════════════════════════════════════════
 const AIRPORTS = {
- 
+
   // ── CANADA ──────────────────────────────────────────────
   'CYYZ': {
     name: 'Toronto Pearson International',
@@ -660,7 +663,7 @@ const AIRPORTS = {
       },
     ]
   },
- 
+
   'CYVR': { name:'Vancouver International', city:'Vancouver, BC',
     runways:[
       {id:'08L/26R',end1:'08L',end2:'26R',hdg1:80,hdg2:260},
@@ -718,7 +721,7 @@ const AIRPORTS = {
       {id:'12/30',end1:'12',end2:'30',hdg1:120,hdg2:300},
     ]
   },
- 
+
   // ── USA ──────────────────────────────────────────────────
   'KLAX': { name:'Los Angeles International', city:'Los Angeles, CA',
     runways:[
@@ -884,7 +887,7 @@ const AIRPORTS = {
       {id:'10R/28L',end1:'10R',end2:'28L',hdg1:100,hdg2:280},
     ]
   },
- 
+
   // ── EUROPE ───────────────────────────────────────────────
   'EGLL': { name:'London Heathrow', city:'London, UK',
     runways:[
@@ -964,7 +967,7 @@ const AIRPORTS = {
       {id:'16/34',end1:'16',end2:'34',hdg1:160,hdg2:340},
     ]
   },
- 
+
   // ── MIDDLE EAST / ASIA / PACIFIC ─────────────────────────
   'OMDB': { name:'Dubai International', city:'Dubai, UAE',
     runways:[
@@ -1018,17 +1021,17 @@ const AIRPORTS = {
     ]
   },
 };
- 
+
 // Build flat search list
 const AIRPORT_LIST = Object.entries(AIRPORTS).map(([icao,a]) => ({
   icao, name: a.name, city: a.city
 }));
- 
+
 // ═══════════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════════
 let currentIcao = localStorage.getItem('fp_airport') || 'CYYZ';
- 
+
 // ═══════════════════════════════════════════════════════════
 // UTILITY
 // ═══════════════════════════════════════════════════════════
@@ -1036,7 +1039,7 @@ function degToCompass(d) {
   const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
   return dirs[Math.round(d / 22.5) % 16];
 }
- 
+
 function getActiveRunway(windDir, windSpd, runways) {
   if (!runways || !runways.length) return null;
   if (windSpd < 3) {
@@ -1057,7 +1060,7 @@ function getActiveRunway(windDir, windSpd, runways) {
   }
   return best;
 }
- 
+
 function allRunwayComponents(windDir, windSpd, runways) {
   if (!runways) return [];
   return runways.flatMap(rwy =>
@@ -1068,7 +1071,7 @@ function allRunwayComponents(windDir, windSpd, runways) {
     })
   );
 }
- 
+
 function getFlightCat(metar) {
   const vis = parseFloat(metar.visib);
   const clouds = metar.clouds || [];
@@ -1079,11 +1082,11 @@ function getFlightCat(metar) {
   if (vis >= 1 && ceilFt >= 500)   return 'IFR';
   return 'LIFR';
 }
- 
+
 function catColor(cat) {
   return {VFR:'var(--cat-vfr)',MVFR:'var(--cat-mvfr)',IFR:'var(--cat-ifr)',LIFR:'var(--cat-lifr)'}[cat] || 'var(--text-2)';
 }
- 
+
 function getCeiling(metar) {
   const clouds = metar.clouds || [];
   if (!clouds.length) return 'CLR';
@@ -1092,12 +1095,12 @@ function getCeiling(metar) {
   const top = clouds[clouds.length - 1];
   return top ? `${top.cover} ${(top.base * 100).toLocaleString()}ft` : 'CLR';
 }
- 
+
 function formatAlt(hpa) {
   const inhg = (hpa * 0.02953).toFixed(2);
   return `${inhg}"`;
 }
- 
+
 // ═══════════════════════════════════════════════════════════
 // WIND ROSE SVG
 // ═══════════════════════════════════════════════════════════
@@ -1113,7 +1116,7 @@ function windRoseSVG(windDir, activeHdg) {
   const [r2x, r2y] = toXY(activeHdg + 180, r * 0.95);
   const [n1,n2] = toXY(0, r+6); const [s1,s2] = toXY(180, r+6);
   const [e1,e2] = toXY(90, r+8); const [w1,w2] = toXY(270, r+8);
- 
+
   return `<svg viewBox="0 0 100 100" width="90" height="90">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1B3260" stroke-width="1"/>
     <circle cx="${cx}" cy="${cy}" r="${r*0.55}" fill="none" stroke="#1B3260" stroke-width="0.5" stroke-dasharray="2 3"/>
@@ -1138,7 +1141,7 @@ function windRoseSVG(windDir, activeHdg) {
     <circle cx="${cx}" cy="${cy}" r="3.5" fill="#7ED4FF"/>
   </svg>`;
 }
- 
+
 // ═══════════════════════════════════════════════════════════
 // FETCH
 // ═══════════════════════════════════════════════════════════
@@ -1149,24 +1152,24 @@ async function fetchMetar(icao) {
     `https://corsproxy.io/?${encodeURIComponent(target)}`,
     `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`,
   ];
- 
+
   const tryFetch = url => fetch(url).then(async res => {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     if (!data || !data.length) throw new Error('No METAR data — check the ICAO code.');
     return data[0];
   });
- 
+
   const timeout = new Promise((_, reject) =>
     setTimeout(() => reject(new Error('All sources timed out — check your connection.')), 15000)
   );
- 
+
   return Promise.race([
     Promise.any(urls.map(tryFetch)),
     timeout
   ]);
 }
- 
+
 // ═══════════════════════════════════════════════════════════
 // RENDER
 // ═══════════════════════════════════════════════════════════
@@ -1178,12 +1181,12 @@ function render(metar) {
   const calm = windSpd < 3;
   const flightCat = getFlightCat(metar);
   const cc = catColor(flightCat);
- 
+
   // ── ACTIVE RUNWAY ──
   const runways = airport?.runways || null;
   const activeRwy = runways && windDir !== null ? getActiveRunway(windDir, windSpd, runways) : null;
   const allComps = (runways && windDir !== null && !calm) ? allRunwayComponents(windDir, windSpd, runways) : [];
- 
+
   let rwyCard = '';
   if (!airport) {
     rwyCard = `<div class="rwy-hero">
@@ -1200,13 +1203,13 @@ function render(metar) {
     const xwPct = Math.min((activeRwy.crosswind / 20) * 100, 100);
     const xwClass = activeRwy.crosswind > 15 ? 'hi' : activeRwy.crosswind > 8 ? 'mod' : '';
     const xwColor = xwClass === 'hi' ? 'var(--danger)' : xwClass === 'mod' ? 'var(--warn)' : 'var(--good)';
- 
+
     const pillsHtml = allComps.map(c =>
       `<div class="rwy-pill${c.end === activeRwy.activeEnd ? ' active' : ''}">
         ${c.end}&nbsp;<span style="font-size:11px;font-weight:400;">${c.hw>0?'+':''}${c.hw}</span>
       </div>`
     ).join('');
- 
+
     rwyCard = `<div class="rwy-hero">
       <div class="card-head">
         <span class="card-label">Active Runway</span>
@@ -1242,7 +1245,7 @@ function render(metar) {
       </div>
     </div>`;
   }
- 
+
   // ── WIND ──
   const windCard = `<div class="card">
     <div class="card-head">
@@ -1264,7 +1267,7 @@ function render(metar) {
       </div>
     </div>
   </div>`;
- 
+
   // ── CONDITIONS ──
   const visStr = metar.visib >= 10 ? '10+' : String(metar.visib);
   const condCard = `<div class="card">
@@ -1288,7 +1291,7 @@ function render(metar) {
       </div>
     </div>
   </div>`;
- 
+
   // ── RAW METAR ──
   const raw = metar.rawOb || 'No raw METAR available';
   const metarCard = `<div class="card">
@@ -1300,7 +1303,7 @@ function render(metar) {
       <div class="metar-raw">${raw}</div>
     </div>
   </div>`;
- 
+
   // ── SPOTTER LOCATIONS ──
   let spotterCard = '';
   if (airport?.spotterLocations?.length) {
@@ -1330,19 +1333,19 @@ function render(metar) {
       <div>${items}</div>
     </div>`;
   }
- 
+
   // ── REFRESH ROW ──
   const ts = metar.reportTime ? metar.reportTime.slice(0,16).replace('T',' ')+'Z' : '';
   const refreshRow = `<div class="refresh-row">
     <span class="update-ts">Updated ${ts}</span>
     <button class="refresh-btn" onclick="loadAirport('${currentIcao}')">↻ Refresh</button>
   </div>`;
- 
+
   document.getElementById('mainContent').innerHTML =
     rwyCard + windCard + condCard + metarCard + spotterCard + refreshRow +
     `<div class="app-footer">FinalPass · <span>CF Black Aviation</span></div>`;
 }
- 
+
 // ═══════════════════════════════════════════════════════════
 // LOAD AIRPORT
 // ═══════════════════════════════════════════════════════════
@@ -1350,17 +1353,17 @@ async function loadAirport(icao) {
   icao = icao.toUpperCase().trim();
   currentIcao = icao;
   localStorage.setItem('fp_airport', icao);
- 
+
   const airport = AIRPORTS[icao];
   document.getElementById('tbIcao').textContent = icao;
   document.getElementById('tbName').textContent = airport ? airport.name : 'Unknown Airport';
- 
+
   document.getElementById('mainContent').innerHTML = `
     <div class="loading-state">
       <div class="pulse-ring"></div>
       <div class="loading-text">Fetching weather · ${icao}</div>
     </div>`;
- 
+
   try {
     const metar = await fetchMetar(icao);
     render(metar);
@@ -1374,7 +1377,7 @@ async function loadAirport(icao) {
       </div>`;
   }
 }
- 
+
 // ═══════════════════════════════════════════════════════════
 // SEARCH
 // ═══════════════════════════════════════════════════════════
@@ -1384,11 +1387,11 @@ function openSearch() {
   renderSearchResults('');
   setTimeout(() => document.getElementById('searchInput').focus(), 150);
 }
- 
+
 function closeSearch() {
   document.getElementById('searchOverlay').classList.remove('open');
 }
- 
+
 function renderSearchResults(q) {
   const query = q.toUpperCase().trim();
   const label = document.getElementById('searchSectionLabel');
@@ -1400,7 +1403,7 @@ function renderSearchResults(q) {
          a.name.toUpperCase().includes(query) ||
          a.city.toUpperCase().includes(query)
        ).slice(0, 20));
- 
+
   document.getElementById('searchResults').innerHTML = results.length
     ? results.map(a => `
         <div class="search-result" onclick="selectAirport('${a.icao}')">
@@ -1417,12 +1420,12 @@ function renderSearchResults(q) {
         No airports found. Try an ICAO code directly.
       </div>`;
 }
- 
+
 function selectAirport(icao) {
   closeSearch();
   loadAirport(icao);
 }
- 
+
 const si = document.getElementById('searchInput');
 si.addEventListener('input', e => renderSearchResults(e.target.value));
 si.addEventListener('keydown', e => {
@@ -1432,7 +1435,16 @@ si.addEventListener('keydown', e => {
     if (v.length >= 3) selectAirport(v);
   }
 });
- 
+
+// ═══════════════════════════════════════════════════════════
+// SERVICE WORKER
+// ═══════════════════════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════
